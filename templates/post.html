@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <div class="posts" style="width: 400px;">
+        <div class="post" style="width: 100%;">
+            <h3>{{ i.title }}</h3>
+            {% if i.file %}
+                <img src="{{ i.file.url }}" style="width: 100%;" />
+            {% endif %}
+            {% if i.author.rasm %}
+                <div style="display: flex; align-items: center; margin: 10px;">
+                    <a href="{% url 'profile' i.author.username %}"><img src="{{ i.author.rasm.url }}" class="rasmu"></a>
+                    <p style="margin: 5px; color: gray;">{{ i.title }} by {{ i.author }}</p>
+                </div>
+            {% endif %}
+            {% for x in i.category.all %}
+                <p style="display: inline-block; padding: 5px; margin: 5px; background: cornflowerblue;">{{ x.name }}</p>
+            {% endfor %}
+            <p>{{ i.body }}</p>
+            {% if user == i.author %}
+                <p><a href="{% url 'delete' i.id %}">Delete</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

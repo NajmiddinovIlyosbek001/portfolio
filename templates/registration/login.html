@@ -1,0 +1,8 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <h2>Login</h2>
+    <form method="POST" style="max-width: 400px;">{% csrf_token %}
+        {{ form.as_p }}
+        <input style="padding: 5px 10px; cursor: pointer;" type="submit" value="login" />
+    </form>
+    <p style="display: inline-block;"><a href="{% url 'signup' %}">You Don't have account</a></p>
+</div>
