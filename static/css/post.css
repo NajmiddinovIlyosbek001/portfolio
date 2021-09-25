@@ -1,0 +1,13 @@
+.post {
+    width: 100%;
+}
+
+.post-text {
+    padding: 5px;
+    margin: 5px;
+    color: gray;
+}
+
+.post-rasm {
+    width: 100%;
+}

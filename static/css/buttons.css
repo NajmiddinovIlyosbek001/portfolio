@@ -1,0 +1,34 @@
+.search {
+    background: blue;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid blue;
+}
+
+.batafsil {
+    background: #eee;
+    color: black;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.login {
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    background: blue;
+    color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.delete {
+    cursor: pointer;
+    background: #eee;
+    color: black;
+    padding: 5px;
+}

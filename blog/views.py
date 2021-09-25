@@ -1,10 +1,11 @@
 from typing import Any, Dict
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
+from blog import filters
 from blog.models import Category, Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from blog.filters import PostFilter
+from blog.filters import PostFilter, UserFilter
 from blog.forms import PostForm
 from accounts.models import CustomUser
 
@@ -57,3 +58,13 @@ def profile(request, username):
         'posts':posts,
     }
     return render(request, 'profile.html', context)
+
+@login_required
+def users(request):
+    filter = UserFilter(request.GET, queryset=CustomUser.objects.all())
+    users = filter.qs
+    context = {
+        'users': users,
+        'filter': filter,
+    }
+    return render(request, 'users.html', context)

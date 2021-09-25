@@ -1,34 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="user-area">
-    <img src="{{ us.rasm.url }}">
-    <p>{{ us.username }}</p>
-</div>
-<div class="posts" style="width: 400px; height: 600px;">
-    {% for i in posts %}
-        <div class="post" style="width: 100%;">
-            <h3>{{ i.title }}</h3>
-            {% if i.file %}
-                <img src="{{ i.file.url }}" style="width: 100%;" />
-            {% endif %}
-            {% if i.author.rasm %}
-                <div style="display: flex; align-items: center; margin: 10px;">
-                    <img src="{{ i.author.rasm.url }}" class="rasmu">
-                    <p style="margin: 5px; color: gray;">{{ i.title }} by {{ i.author }}</p>
-                </div>
-            {% endif %}
-            {% for x in i.category.all %}
-                <p style="display: inline-block; padding: 5px; margin: 5px; border-radius: 3px; background: cornflowerblue;">{{ x.name }}</p>
-            {% endfor %}
-            <p>{{ i.body }}</p>
-            {% if user == i.author %}
-                <p><a href="{% url 'delete' i.id %}">Delete</a></p>
-            {% endif %}
-        </div>
-        <br>
-        <hr>
-        <br>
-    {% endfor %}
+<div class="content">
+    <div class="author-port">
+        <img src="{{ us.rasm.url }}">
+        <p>{{ us.username }}</p>
+    </div>
+    <div class="posts">
+        {% for i in posts %}
+            <div class="post">
+                <h3>{{ i.title }}</h3>
+                {% if i.file %}
+                    <img src="{{ i.file.url }}" class="post-rasm"/>
+                {% endif %}
+                {% if i.author.rasm %}
+                    <div class="author-rasm">
+                        <img src="{{ i.author.rasm.url }}">
+                        <p>{{ i.title }} by {{ i.author }}</p>
+                    </div>
+                {% endif %}
+                {% for x in i.category.all %}
+                    <p class="category">{{ x.name }}</p>
+                {% endfor %}
+                <p>{{ i.body }}</p>
+                {% if user == i.author %}
+                    <p><a href="{% url 'delete' i.id %}">Delete</a></p>
+                {% endif %}
+            </div>
+            <br>
+            <hr>
+            <br>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}

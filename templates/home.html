@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<div class="container">
     <form method="GET">
+        <div class="author-rasm">
+            <a href="{% url 'profile' user.username %}"><img src="{{ user.rasm.url }}"></a>
+            <p>{{ user.username }}</p>
+        </div>
         {{ filter.form }}
-        <input type="submit" value="submit" />
+        <input class="search" type="submit" value="submit" />
     </form>
-</div>
-<div style="display: flex; flex-direction: column; align-items: center;">
-    <div class="posts" style="width: 400px; overflow-y:scroll; overflow-x:hidden; height: 600px;">
+    <div class="posts">
         {% for i in posts %}
-            <div class="post" style="width: 100%;">
+            <div class="post">
                 <h3>{{ i.title }}</h3>
                 {% if i.file %}
-                    <img src="{{ i.file.url }}" style="width: 100%;" />
+                    <img src="{{ i.file.url }}" class="post-rasm"/>
                 {% endif %}
                 {% if i.author.rasm %}
-                    <div style="display: flex; align-items: center; margin: 10px;">
-                        <a href="{% url 'profile' i.author.username %}"><img src="{{ i.author.rasm.url }}" class="rasmu"></a>
-                        <p style="margin: 5px; color: gray;">{{ i.title }} by {{ i.author }} {{ i.created }}</p>
+                    <div class="author-rasm">
+                        <a href="{% url 'profile' i.author.username %}"><img src="{{ i.author.rasm.url }}"></a>
+                        <p class="post-info">{{ i.title }} by {{ i.author }} {{ i.created }}</p>
                     </div>
                 {% endif %}
+                <p class="post-text">{{ i.body }}</p>
                 {% for x in i.category.all %}
-                    <p style="display: inline-block; padding: 5px; margin: 5px; border-radius: 3px; background: cornflowerblue;">{{ x.name }}</p>
+                    <p class="category">{{ x.name }}</p>
                 {% endfor %}
-                <p>{{ i.body }}</p>
-                <p><a href="{{ i.get_absolute_url }}">Batafsil</a></p>
-                {% if user == i.author %}
-                    <p><a href="{% url 'delete' i.id %}">Delete</a></p>
-                {% endif %}
+                <div class="btn-gr">
+                    <a class="batafsil" href="{{ i.get_absolute_url }}">Batafsil</a>
+                    {% if user == i.author %}
+                        <a class="delete" href="{% url 'delete' i.id %}">Delete</a>
+                    {% endif %}
+                </div>
             </div>
             <br>
             <hr>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <form method="GET" style="width: 400px;">
+        <div style="width: 100%;">{{ filter.form }}</div>
+    </form>
+    <div>
+        {% for i in users %}
+            <div class="author-port">
+                <a href="{% url 'profile' i.username %}"><img src="{{ i.rasm.url }}"></a>
+                <p>{{ i.username }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

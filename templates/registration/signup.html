@@ -1,6 +1,39 @@
-<h2>Register</h2>
-<form method="POST" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="register" />
-</form>
-<p><a href="{% url 'login' %}">Already Have Account</a></p>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <h2>Register</h2>
+        <div>
+            <label>Username</label>
+            {{ form.username }}
+        </div>
+        <div>
+            <label>First name</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label>Last name</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label>Email</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label>Image</label>
+            {{ form.rasm }}
+        </div>
+        <div>
+            <label>Password</label>
+            {{ form.password1 }}
+        </div>
+        <div>
+            <label>Password confirmation</label>
+            {{ form.password2 }}
+        </div>
+        <input class="login" type="submit" value="register" />
+        <p><a href="{% url 'login' %}">Already Have Account</a></p>
+    </form>
+</div>
+{% endblock content %}

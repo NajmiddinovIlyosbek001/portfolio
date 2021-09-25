@@ -1,0 +1,36 @@
+.author-port {
+    background: #eee;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    width: 400px;
+}
+
+.author-port img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-port p {
+    font-size: 2rem;
+}
+
+.author-rasm {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.author-rasm img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.author-rasm p {
+    margin: 5px; 
+    color: gray;
+}
